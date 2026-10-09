@@ -1,0 +1,6 @@
+interface:
+  display_name: "AI STEM Knowledge Summary"
+  short_description: "Connect course knowledge, methods, and exercises"
+  default_prompt: "Use $ai-stem-knowledge-summary to turn my course materials and exercises into a source-grounded study guide with reusable methods and bidirectional problem indexes, without full worked solutions."
+policy:
+  allow_implicit_invocation: true

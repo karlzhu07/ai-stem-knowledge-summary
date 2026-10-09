@@ -1,2 +1,74 @@
-# ai-stem-knowledge-summary
-AI STEM Knowledge Summary: source-grounded course guides linking knowledge, reusable methods, and exercises. 理科知识总结技能。
+# AI STEM Knowledge Summary
+
+**AI 理科知识总结 Skill**
+
+A reusable AI skill that turns course materials and exercises into study guides connecting **knowledge → methods → problems**.
+
+适用于数学、物理、电路、编程及其他理工科课程。技能指令采用英文，默认生成简体中文学习讲义；可按要求更换输出语言。
+
+## 它做什么
+
+先分析并核验练习题，再结合课件例题，整理：
+
+- 指定范围内的全部正式定理、核心定义、公式及可复用结论；
+- 每种方法的识别信号、关键操作、适用条件与常见错误；
+- “方法 → 题目”和“题目 → 知识与方法”的双向索引；
+- 每个题号与小问的简短结论，不默认展开逐题证明；
+- 来源位置、疑似笔误、复习优先级及快速选法表。
+
+技能区分课程原有内容、直接推论和拓展，保留题目规定的证明或求解方法。没有题目或材料的部分不会伪造覆盖。
+
+## 文件结构
+
+~~~text
+ai-stem-knowledge-summary/
+├── SKILL.md
+├── agents/
+│   └── openai.yaml
+├── references/
+│   └── discipline-adaptation.md
+└── README.md
+~~~
+
+SKILL.md 是技能入口；agents/openai.yaml 提供 Codex 的显示信息；参考文件按需提供不同学科的整理标准。此技能本身不需要额外脚本或 API 密钥。读取 PDF、执行代码及导出文档的能力由所使用的 AI 环境提供。
+
+## 安装
+
+将本仓库文件保存在名为 ai-stem-knowledge-summary 的目录中，放入 Codex 技能目录：
+
+~~~text
+~/.codex/skills/ai-stem-knowledge-summary/
+~~~
+
+如果设置了 CODEX_HOME，则使用其中的 skills/ 目录。确保 SKILL.md 直接位于技能目录下，不要重复嵌套一层同名文件夹。不要覆盖已存在的同名技能，除非你确实希望更新它。
+
+其他支持 SKILL.md 的工具可使用同一技能内容，具体安装路径以该工具为准。普通聊天环境也可读取并采用正文，但自动发现、读取附件和生成文件的能力取决于该环境。
+
+## 使用示例
+
+附上课件和练习题，然后输入：
+
+~~~text
+请使用 $ai-stem-knowledge-summary 整理这些资料。
+
+课程：工科数学分析
+范围：1.1—1.2
+主要资料：附件中的课件与练习题
+要求：先核验题目，不输出逐题过程；整理全部定理、常用结论、
+放缩与变形方法，并标出对应习题与课件例题页码。
+保留简短答案速查，最终输出 Markdown 讲义。
+~~~
+
+其他课程只需替换课程与范围，例如“电路中的节点电压法和网孔电流法”或“C++ 循环与数组”。如果不想看到答案，明确写“只整理知识和方法，不展示习题答案”。
+
+## 输出结构
+
+1. 范围、来源与知识地图；
+2. 定义、定理和常用结论；
+3. 方法与工具箱；
+4. 快速选法表；
+5. 全部练习题索引；
+6. 课件例题索引；
+7. 易错点、资料纠错和复习优先级。
+
+可按学科合并或调整结构。此技能提供整理流程；无法核验的内容应明确标记，以便回查原始材料。
